@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section id="login">
+    <!-- <div style="background-color: green; width: 50vh; height: auto; position: absolute; right: 0;"></div> -->
+    <div class="overlay">
+        <div class="maincard">
+<form action="" method="POST">
+            <div class="container">
+                <div style="text-align: center;">
+                    <!-- <img src="{{url_for("static", filename="img/reg.png")}}" width="100px" alt=""> -->
+                    <h4>Register for the course</h4>
+                    <br>
+                    <p class="text-muted">Are you a teacher-centered or a learner-centered educator? Would you like to find out?
+                         Do you want high competency outcomes from your students?
+                         To enhance students’ problem solving and critical thinking skills?  Or to finally catch up to the changing times?
+                        You can get started all on your own with a LectureSoft Basic Skills self-assessment.
+                        Take it often and see your 21st century teaching skills grow. Evaluate your teaching and course design with our field- tested science-based tool. Receive custom results, tips and recommendations, your learners, your nation will thank you.
+                        God’s speed!
+                        </p>
+                    <br>
+                        {{ form.hidden_tag() }}
+                        <div class="form-group" style="width: 100%;">
+                            {{ form.firstname(class="space", placeholder="Enter your first name")}}
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            {{ form.lastname(class="space", placeholder="Enter your last name")}}
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            {{ form.phone(class="space", placeholder="Enter your phone number")}}
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            {{ form.email(class="space", placeholder="Enter your email address")}}
+                        </div>
+                        <div class="form-group" style="width: 100%;">
+                            {{ form.course(class="space", placeholder="Which course are you vetting")}}
+                        </div>
+                        <!-- <div class="form-group" style="text-align: center;">
+                            {{form.submit (class="login-button")}}
+                        </div> -->
+                        <div class="flexrow" id="formsubmit">
+                            <a href="#">
+                                <h6 class="text-mutes">Help</h6>
+                            </a>
+                            <button type="submit" class="button">Take The Test</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

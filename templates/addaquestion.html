@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div>
+<form action="" method="post">
+<div class="container">
+    <div style="text-align: center;">
+        <!-- <img src="{{url_for("static", filename="img/reg.png")}}" width="100px" alt=""> -->
+        <h4>Add a new question</h4>
+        <br>
+        <!-- <p class="text-muted">Add a new question here..</p> -->
+        <br>
+            {{ form.hidden_tag() }}
+            <div class="form-group" style="width: 100%;">
+                {{ form.question(class="space", placeholder="Enter the question")}}
+            </div>
+            <div class="form-group" style="width: 100%;">
+                {{ form.q_number(class="space", placeholder="Question Number")}}
+            </div>
+            <div class="form-group" style="width: 100%;">
+                {{ form.skillGroup(class="space", placeholder="Skill Group")}}
+            </div>
+         
+            <!-- <div class="form-group" style="text-align: center;">
+                {{form.submit (class="login-button")}}
+            </div> -->
+            <div class="flexrow" id="formsubmit">
+                <a href="#">
+                    <h6 class="text-mutes">Help</h6>
+                </a>
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}

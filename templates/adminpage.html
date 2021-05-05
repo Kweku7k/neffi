@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for("static", filename="css/admin.css")}}">
+    </head>
+    <body>
+    <div class="sidenav">
+        <div style="text-align: center;" >
+            <img src="{{url_for("static", filename="img/lslogo.png")}}" width="80%" >
+        </div>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    </div>
+
+    <div class="main">
+        {% block body %}
+
+
+        
+        {% endblock %}
+    </div>
+    
+    </body>
+</html> 

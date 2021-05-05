@@ -1,0 +1,105 @@
+body{
+    font-family: 'Plus Jakarta Display', sans-serif;
+
+}
+section #login{
+    /* width: 100vw; */
+    height: 100vh;
+    background-color: #FAFAFA;
+}
+
+section{
+    padding-top:10vh;
+    padding-bottom:10vh;
+}
+
+.bar{
+    width: 100vw;
+    padding: 20px;
+    text-align: center ;
+    background-color: #000044;
+}
+
+.header{
+    color: white;
+    font-weight: bold;
+}
+/* 
+.overlay{
+    width: 30vw;
+    height: 100vh;
+    position: relative;
+    background-color: #000044;
+    padding:10vh;
+    
+} */
+.maincard{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: 70vw;
+    height: auto;
+    background-color: white;
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    font-family: 'Plus Jakarta Display', sans-serif;
+    padding: 20px;
+    /* position: relative; */
+}
+
+.flexrow{
+    display: flex;
+    justify-content: space-between;
+}
+
+#formsubmit{
+    margin-top:auto ;
+    padding: 30px;
+}
+.button{
+    border: none;
+    background-color: #019B9B;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 15px;
+}
+
+.roundform{
+    border-radius: 20px;
+    background-color: aqua;
+}
+
+.line{
+    margin: 5vh;
+}
+
+.space{
+    padding:20px; 
+    border-radius:10px;
+    width: 100%;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+.smallheader{
+    color: teal; 
+    font-weight: 500; 
+    font-size: small;
+}
+
+.smallheader-black{
+    color: black; 
+    font-weight: 300; 
+    /* font-size: small; */
+}
+
+.smallheader-bold{
+    color: black; 
+    font-weight: 700; 
+    /* font-size: small; */
+}
+
+.smallheader-small{
+    color: teal; 
+    font-weight: 200; 
+    cursor: pointer;
+    /* font-size: small; */
+}

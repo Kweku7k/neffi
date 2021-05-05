@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <br>
+        <div class="row">
+
+            {% for question in questions %}
+            <div style="margin-top: auto; margin-bottom: auto;">
+                <h6 class="smallheader">QUESTION {{question.id}}</h6>
+                <h5 style="font-weight:400;">{{question.question}}</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

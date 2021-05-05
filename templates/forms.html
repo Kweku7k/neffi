@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section>
+
+<div class="container">
+    <br>
+
+    <form action="{{url_for('report')}}" method="POST">
+    {% for question in questions%}
+    <div class="row">
+        <div class="col-md-6" style="margin-top: auto; margin-bottom: auto;">
+            <h6 class="smallheader">QUESTION {{question.id}}</h6>
+            <h5 style="font-weight:400;">{{question.question}}.</h5>
+        </div>
+        <div class="col-md-6">
+            <div style="display: flex; justify-content: space-between;">
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                    <input type="radio" name="{{question.id}}" value="never">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                    <input type="radio" name="{{question.id}}" value="rarely">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                    <input type="radio" name="{{question.id}}" value="sometimes">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                    <input type="radio" name="{{question.id}}" value="often">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                    <input type="radio" name="{{question.id}}" value="always">
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    <hr class="line">
+
+    {% endfor %}
+    <button class="button" type="submit">Submit</button>
+</form>
+
+
+
+
+</div>
+</section>
+
+
+{% endblock %}

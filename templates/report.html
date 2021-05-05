@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section style="padding-top: 5vh; padding-bottom: 5vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="smallheader">YOUR FINAL SCORE</h6>
+                <h1 style="font-size: 100px; font-weight: bold;">70%</h1>
+                <h4>Your skills are <span style="color: teal; font-weight: bold;"><u>ACCEPTABLE</u></span></h4>
+            </div>
+            <div class="col-md-6">
+                graphs go here.
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bar">
+    <h6 class="smallheader" style="color: white;" >YOUR RANK SCORE</h6>
+    <h3 class="header">A detailed score</h3>
+</div>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="smallheader-bold">Your relative strengths</h4>
+                <h6 class="smallheader-black">The following areas are strengths for you</h6>
+                <h6 class="smallheader-small">Relevance, Application, Interest</h6>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="smallheader-bold">Your relative strengths</h4>
+                <h6 class="smallheader-black">The following areas are strengths for you</h6>
+                <h6 class="smallheader-small">Relevance, Application, Interest</h6>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="smallheader-bold">Your relative strengths</h4>
+                <h6 class="smallheader-black">The following areas are strengths for you</h6>
+                <h6 class="smallheader-small">Relevance, Application, Interest</h6>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="smallheader-bold">Your relative strengths</h4>
+                <h6 class="smallheader-black">The following areas are strengths for you</h6>
+                <h6 class="smallheader-small">Relevance, Application, Interest</h6>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="bar">
+    <h6 class="smallheader" style="color: white;" >THE NEFERTITI PROJECT</h6>
+    <h3 class="header">Contact Us Now</h3>
+</div>
+
+<section>
+    <div class="container">
+        <h4 class="smallheader-bold">You can reach out to us for training.</h4>
+        <h6 class="smallheader-black">We here at The Nefertiti Project specialise in training classroom leaders in the 21st century ways of teaching. We prioritise in migrating out teachers from from the traditional way of learning.</h6>
+        <div class="row">
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Facebook.png")}}" width="100"alt="">
+                <br>
+                <h6 class="smallheader">FACEBOOK</h6>
+            </div>
+
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Twitter.png")}}" width="100"alt="">
+                <h6 class="smallheader">TWITTER</h6>
+            </div>
+
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Instagram.png")}}" width="100"alt="">
+                <h6 class="smallheader">INSTAGRAM</h6>
+            </div>
+
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Whatsapp.png")}}" width="100"alt="">
+                <h6 class="smallheader">WHATSAPP</h6>
+            </div>
+
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Youtube.png")}}" width="100"alt="">
+                <h6 class="smallheader">YOUTUBE</h6>
+            </div>
+
+            <div class="col-md-2 col-4" style="text-align: center;">
+                <img src="{{url_for("static", filename="img/Phone.png")}}" width="100"alt="">
+                <h6 class="smallheader">PHONE</h6>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
