@@ -54,12 +54,23 @@ def addquestion():
 def report():
     questions = Question.query.all()
     totalquestions = len(questions)
+    score = 0
     for i in questions:
         var = i.id
-        var = str(var)
-        # print(var)
+        var = str(var)  
         name = request.form[ var ]
+        # This picks the point you scored for each question and makes it an integer for a specific time
+        point = int(name)
+        score = score + point
+        print(score)
         print(i.skillGroup + " - " + name)
-    return render_template('report.html')
+    print("Score = " + str(score))
+    total = totalquestions*4
+    print("Total = " + str(total))
+    percent = (score/total)
+    print("Your percent" + str(percent))
+    percentage = percent * 100
+    print(str(percentage) + "%")
+    return render_template('report.html', percentage = percentage)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
