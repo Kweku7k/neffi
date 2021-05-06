@@ -13,7 +13,8 @@ class RegistrationForm(FlaskForm):
 class Questions(FlaskForm):
     question = StringField('Phone', validators=[DataRequired()])
     q_number = StringField('Question Number')
-    skillGroup = StringField('Phone', validators=[DataRequired()])
+    component= SelectField('Component', choices=[('--Component--', '--Component--'),('Prior Knowledge', 'Prior Knowledge'), ('Social Engagement', 'Social Engagement'), ('Relevance', 'Relevance'), ('Application', 'Application'),('Lecture Focus', 'Lecture Focus'),('Meaningful Application', 'Meaningful Application'),('Organisation', 'Organisation'),('Visualization', 'Visualization'),('Elaboration', 'Elaboration'),('Repitition', 'Repitition'),('Empowerment', 'Empowerment'),('Usefulness', 'Usefulness'),('Success', 'Success'),('Interest', 'Interest'),('Caring', 'Caring')])
+    skillGroup = SelectField('Skill Group', choices=[('--Skill Group--', '--Skill Group--'),('Learner Centricity', 'Learner Centricity'),('Teaching for Recall', 'Teaching for Recall'),('Teaching for Engagement', 'Teaching for Engagement')])
     submit = SubmitField('Submit')
 
 
