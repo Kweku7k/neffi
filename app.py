@@ -73,7 +73,7 @@ def report():
     print("Total = " + str(total))
     percent = (score/total)
     print("Your percent" + str(percent))
-    percentage = percent * 100
+    percentage = round(percent * 100, 2)
     print(str(percentage) + "%")
     return render_template('report.html', percentage = percentage)
 if __name__ == '__main__':
