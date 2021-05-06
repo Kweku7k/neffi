@@ -12,7 +12,7 @@ class RegistrationForm(FlaskForm):
 
 class Questions(FlaskForm):
     question = StringField('Phone', validators=[DataRequired()])
-    q_number = StringField('Question Number', validators=[DataRequired()])
+    q_number = StringField('Question Number')
     skillGroup = StringField('Phone', validators=[DataRequired()])
     submit = SubmitField('Submit')
 

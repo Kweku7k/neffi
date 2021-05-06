@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "adminlayout.html" %}
 
 {% block body %}
 <div>
@@ -15,7 +15,7 @@
                 {{ form.question(class="space", placeholder="Enter the question")}}
             </div>
             <div class="form-group" style="width: 100%;">
-                {{ form.q_number(class="space", placeholder="Question Number")}}
+                {{ form.q_number(class="space", placeholder="Question Number: This is optional")}}
             </div>
             <div class="form-group" style="width: 100%;">
                 {{ form.skillGroup(class="space", placeholder="Skill Group")}}

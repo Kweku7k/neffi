@@ -11,6 +11,14 @@ body {
     border-radius: 15px;
 }
 
+.outline-button{
+  border: 1px solid #019B9B;
+  background-color: transparent;
+  padding: 10px 30px;
+  color: #019B9B;
+  border-radius: 15px;
+}
+
   
   .sidenav {
     height: 100%;
@@ -31,7 +39,8 @@ body {
     color: #818181;
     display: block;
   }
-  
+ 
+
   .sidenav a:hover {
     color: #f1f1f1;
   }
@@ -44,3 +53,4 @@ body {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+

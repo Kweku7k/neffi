@@ -63,6 +63,14 @@ section{
     border-radius: 15px;
 }
 
+.outline-button{
+    border: 1px solid #019B9B;
+    background-color: transparent;
+    padding: 10px 30px;
+    color: #019B9B;
+    border-radius: 15px;
+}
+
 .roundform{
     border-radius: 20px;
     background-color: aqua;

@@ -1,13 +1,31 @@
-{% extends "adminpage.html" %}
+{% extends "adminlayout.html" %}
 
 {% block body %}
 <div class="container">
-    <div style="display: flex; justify-content: space-between;" >
-        <h1>Welcome Nefertiti</h1>
-        <button class="button">Add a question</button>
+    <div style="display: flex; justify-content: space-between  ;">
+        <h1>All your questions</h1>
+        <a href="{{url_for('addquestion')}}">
+            <button class="button">Add a new question</button>
+        </a>
     </div>
-    <div class="row">
-        
+<div style="margin-top: 5vh; margin-bottom: 5vh;">
+    {% if totalquestions == 0 %}
+        <h4 style="text-align: center; ">There are no questions</h4>
+    {% else %}
+{% for question in questions %}
+<div>
+        <h6 class="smallheader">QUESTION {{question.id}}</h6>
+        <h6 class="smallheader-black text-muted">{{question.skillGroup}}</h6>
+        <h5 style="font-weight:400;">{{question.question}}.</h5>
     </div>
+   
+<hr class="line">
+
+{% endfor %}
+    {% endif %}
+
 </div>
+
+</div>
+
 {% endblock %}

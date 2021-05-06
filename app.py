@@ -27,11 +27,15 @@ def home():
 @app.route('/forms')
 def forms():
     questions = Question.query.all()
-    return render_template('forms.html', questions = questions)
+    totalquestions = len(questions)
+    return render_template('forms.html', questions = questions, totalquestions=totalquestions)
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    questions = Question.query.all()
+    totalquestions = len(questions)
+    return render_template('admin.html', questions = questions, totalquestions = totalquestions)
+
 
 @app.route('/admin/questions')
 def adminquestions():
@@ -47,7 +51,7 @@ def addquestion():
         db.session.add(new_question)
         db.session.commit()
         print("It submits")
-        return redirect (url_for('forms'))
+        return redirect (url_for('admin'))
     return render_template('addaquestion.html', form=form)
 
 @app.route('/report', methods=['GET','POST'])
