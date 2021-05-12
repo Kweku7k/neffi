@@ -6,10 +6,47 @@ from flask_migrate import Migrate
 app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628b21sb13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+# app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://isbiiqutsfeekn:c2058971f5bb424127a6b01d9ed3419b5599727a6f67d80136187b13465fe69a@ec2-34-200-94-86.compute-1.amazonaws.com:5432/d3ucdicb4224a8'
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 from models import *
+
+#Functions
+def skill(percentage):
+    poor = range(0, 29)
+    fair = range(30, 59)
+    acceptable = range(60, 75)
+    good = range(76, 92)
+    outstanding = range(93,97)
+    exceptional = range(98,100)
+    yourskill = "not set"
+    for i in poor:
+        if percentage == i:
+            print(i)
+            yourskill = "Poor"
+    for i in fair:
+        if percentage == i:
+            print(i)
+            yourskill = "Fair"
+    for i in acceptable:
+        if percentage == i:
+            print(i)
+            yourskill = "Acceptable"
+    for i in good:
+        if percentage == i:
+            print(i)
+            yourskill = "Good"
+    for i in outstanding:
+        if percentage == i:
+            print(i)
+            yourskill = "Outstanding"
+    for i in exceptional:
+        if exceptional == i:
+            print(i)
+            yourskill = "Exceptional"
+    return yourskill
 
 @app.route('/',methods=['GET','POST'])
 def home():
@@ -47,7 +84,7 @@ def adminquestions():
 def addquestion():
     form = Questions()
     if form.validate_on_submit():
-        new_question = Question(question=form.question.data, skillGroup = form.skillGroup.data, q_number=form.q_number.data )
+        new_question = Question(question=form.question.data, skillGroup = form.skillGroup.data, q_number=form.q_number.data, component =form.component.data )
         db.session.add(new_question)
         db.session.commit()
         print("It submits")
@@ -59,15 +96,32 @@ def report():
     questions = Question.query.all()
     totalquestions = len(questions)
     score = 0
+    muchwork = []
+    attention = []
+    fair = []
+    strengths = []
     for i in questions:
-        var = i.id
-        var = str(var)  
-        name = request.form[ var ]
+        # questionId is the question id
+        questionId = str(i.id)
+        # name is the point for each question
+        point = int(request.form[ questionId ])
         # This picks the point you scored for each question and makes it an integer for a specific time
-        point = int(name)
         score = score + point
         print(score)
-        print(i.skillGroup + " - " + name)
+        print(i.skillGroup + " - " + str(point))
+        if 4 <= point <= 5:
+            print("Appending Strengths")
+            strengths.append(i.component)
+        if 1 <= point <= 2:
+            print("Needs Much Work")
+            muchwork.append(i.component)
+        if point == 3:
+            print("Appending Fair")
+            fair.append(i.component)
+        if point == 1:
+            print("Much attention Needed")
+            fair.append(i.component)
+
     print("Score = " + str(score))
     total = totalquestions*4
     print("Total = " + str(total))
@@ -75,6 +129,11 @@ def report():
     print("Your percent" + str(percent))
     percentage = round(percent * 100, 2)
     print(str(percentage) + "%")
-    return render_template('report.html', percentage = percentage)
+    print("Your Skill was " + skill(12))
+    skills = skill(percentage)
+    print("Your Strengths = " + str(strengths))
+    print("Attention needed = " + str(attention))
+    print("Fair Skills = " + str(fair))
+    return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

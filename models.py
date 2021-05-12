@@ -17,3 +17,4 @@ class Question(db.Model):
     question = db.Column(db.String())
     skillGroup = db.Column(db.String())
     q_number = db.Column(db.String())
+    component = db.Column(db.String())
