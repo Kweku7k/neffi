@@ -20,7 +20,7 @@ def skill(percentage):
     acceptable = range(60, 75)
     good = range(76, 92)
     outstanding = range(93,97)
-    exceptional = range(98,100)
+    exceptional = range(98,101)
     yourskill = "not set"
     for i in poor:
         if percentage == i:
@@ -127,7 +127,7 @@ def report():
     print("Total = " + str(total))
     percent = (score/total)
     print("Your percent" + str(percent))
-    percentage = round(percent * 100, 2)
+    percentage = round(percent * 100)
     print(str(percentage) + "%")
     print("Your Skill was " + skill(12))
     skills = skill(percentage)
