@@ -9,6 +9,7 @@
     <h4>There a no questions, please try again later.</h4>
     {% else %}
     <form action="{{url_for('report')}}" method="POST">
+        <fieldset class="scheduler-border">
         {% for question in questions %}
         <div class="row">
             <div class="col-md-6" style="margin-top: auto; margin-bottom: auto;">
@@ -41,18 +42,17 @@
             </div>
         </div>
         <hr class="line">
-    
         {% endfor %}
         <button class="button" type="submit">Submit</button>
+    </fieldset>
     </form>
     {% endif %}
    
 
 
-
-
 </div>
 </section>
+
 
 
 {% endblock %}

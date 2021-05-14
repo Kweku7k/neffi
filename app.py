@@ -109,18 +109,18 @@ def report():
         score = score + point
         print(score)
         print(i.skillGroup + " - " + str(point))
-        if 4 <= point <= 5:
+        if 3 <= point <= 4:
             print("Appending Strengths")
             strengths.append(i.component)
-        if 1 <= point <= 2:
+        if 0 <= point <= 1:
             print("Needs Much Work")
-            muchwork.append(i.component)
-        if point == 3:
+            muchwork.append(i.component)    
+        if point == 2:
             print("Appending Fair")
             fair.append(i.component)
-        if point == 1:
+        if point == 0:
             print("Much attention Needed")
-            fair.append(i.component)
+            attention.append(i.component)
 
     print("Score = " + str(score))
     total = totalquestions*4
