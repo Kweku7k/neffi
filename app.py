@@ -48,6 +48,20 @@ def skill(percentage):
             yourskill = "Exceptional"
     return yourskill
 
+
+def findPercentage(score, total):
+    percentage = str(round((score / total) * 100)) + "%"
+    return percentage
+
+def findTotal(array):
+    total = 0;
+    for i in range(len(array)):
+        total = total + array[i]
+        print("Function " + str(total))
+    # percentage
+    percentage = findPercentage(len(array), total)
+    return percentage
+
 @app.route('/',methods=['GET','POST'])
 def home():
     form = RegistrationForm()
@@ -100,6 +114,10 @@ def report():
     attention = []
     fair = []
     strengths = []
+    teachingForRecall = []
+    learnerCentricity = []
+    teachingForEngagement = []
+
     for i in questions:
         # questionId is the question id
         questionId = str(i.id)
@@ -108,6 +126,7 @@ def report():
         # This picks the point you scored for each question and makes it an integer for a specific time
         score = score + point
         print(score)
+        print("Component " + i.skillGroup)
         print(i.skillGroup + " - " + str(point))
         if 3 <= point <= 4:
             print("Appending Strengths")
@@ -121,6 +140,18 @@ def report():
         if point == 0:
             print("Much attention Needed")
             attention.append(i.component)
+        # Fill the skillGroup for calculations
+        if (i.skillGroup) == "Learner Centricity":
+            learnerCentricity.append(point)
+            print("This is a Learner Centricity Component with a total of ")
+
+        if (i.skillGroup) == "Teaching for Recall":
+            print("This is a Teaching for Recall Component")
+            teachingForRecall.append(point)
+        if (i.skillGroup) == "Teaching for Engagement":
+            print("This is a Teaching for Engagement Component")
+            teachingForEngagement.append(point)
+
 
     print("Score = " + str(score))
     total = totalquestions*4
@@ -134,6 +165,12 @@ def report():
     print("Your Strengths = " + str(strengths))
     print("Attention needed = " + str(attention))
     print("Fair Skills = " + str(fair))
-    return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair)
+    learnerCentricityTotal = findTotal(learnerCentricity)
+    teachingForRecallTotal = findTotal(teachingForRecall)
+    teachingForEngagementTotal = findTotal(teachingForEngagement)
+    print(learnerCentricityTotal)
+    print(teachingForRecallTotal)
+    print(teachingForEngagementTotal)
+    return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

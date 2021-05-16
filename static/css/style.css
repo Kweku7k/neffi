@@ -2,10 +2,19 @@ body{
     font-family: 'Plus Jakarta Display', sans-serif;
 
 }
+
+.loginClass{
+    background-image: url("../img/bg.png");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
 section #login{
     /* width: 100vw; */
+    background-color: #cccccc; 
     height: 100vh;
-    background-color: #FAFAFA;
+    
 }
 
 section{
@@ -138,7 +147,7 @@ section{
       margin: 0;
     }
 
-    #login{
+    section{
         margin: 0;
         padding: 0;
     }
