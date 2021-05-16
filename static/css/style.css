@@ -130,3 +130,16 @@ section{
     margin-top: 3vh;
     text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .maincard{
+      width: 100%;
+      margin: 0;
+    }
+
+    #login{
+        margin: 0;
+        padding: 0;
+    }
+  }
