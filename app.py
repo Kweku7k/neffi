@@ -3,6 +3,8 @@ from forms import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from send_mail import send_mail
+import urllib.request, urllib.parse
+import urllib
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628b21sb13ce0c676dfde280ba245'
@@ -116,6 +118,13 @@ def addquestion():
         return redirect (url_for('admin'))
     return render_template('addaquestion.html', form=form)
 
+def send_sms(api_key,phone,message,sender_id):
+    params = {"key":api_key,"to":phone,"msg":message,"sender_id":sender_id}
+    url = 'https://apps.mnotify.net/smsapi?'+ urllib.parse.urlencode(params)
+    content = urllib.request.urlopen(url).read()
+    print (content)
+    print (url)
+
 @app.route('/report', methods=['GET','POST'])
 def report():
     send_mail()
@@ -182,6 +191,9 @@ def report():
     print(learnerCentricityTotal)
     print(teachingForRecallTotal)
     print(teachingForEngagementTotal)
+
+    msgbody = "Nana Kweku has filled your form."
+    send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
     return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
