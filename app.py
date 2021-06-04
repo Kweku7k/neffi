@@ -50,7 +50,10 @@ def skill(percentage):
     return yourskill
 
 def findPercentage(score, total):
-    percentage = str(round((score / total) * 100)) + "%"
+    try:
+        percentage = str(round((score / total) * 100)) + "%"
+    except ZeroDivisionError:
+        percentage = 0
     return percentage
 
 def findTotal(array):
