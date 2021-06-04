@@ -62,7 +62,13 @@ def findTotal(array):
         total = total + array[i]
         print("Function " + str(total))
     # percentage
-    percentage = findPercentage(len(array), total)
+    groupTotal = len(array) * 4
+    print("GROUP TOTAL")
+    print(groupTotal)
+    print(len(array))
+    print(total)
+    percentage = findPercentage(total, groupTotal)
+
     return percentage
 
 @app.route('/',methods=['GET','POST'])

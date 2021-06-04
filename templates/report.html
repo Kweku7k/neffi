@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<section id="login" >
+    <!-- <div style="background-color: green; width: 50vh; height: auto; position: absolute; right: 0;"></div> -->
+    <div class="overlay">
+        <div class="maincard" id="formCard">
 <section style="padding-top: 5vh; padding-bottom: 5vh;">
     <div class="container">
         <div class="row">
@@ -16,19 +21,16 @@
     </div>
 </section>
 
-<div class="bar">
-    <h6 class="smallheader" style="color: white;" >YOUR RANK SCORE</h6>
-    <h3 class="header">A detailed score</h3>
-</div>
+
 
 <section>
+    <h6 class="smallheader" style="color: teal;" >YOUR RANK SCORE</h6>
+    <h3 class="header" style="color: black;">A detailed score</h3>
+    <hr style="width: 30%; margin-left: 0;">
     <div class="container">
         <div class="row">
 
-            Your area(s) of relative strength [all components of score 4].
-Area(s) needing much work [all components scored 1]
-Area(s) needing the most work [all components scored 0]
-Area(s) needing some improvement  [all components scored 2].
+            
             <div>
                 <h6>
                     Your areas of relative strength for are  <span class="smallheader-small">{{strengths}}</span>.
@@ -38,7 +40,7 @@ Area(s) needing some improvement  [all components scored 2].
                 <br>
                 <h6>The areas that need the most work are <span class="smallheader-small">{{attention}}</span>.</h6>
                 <br>
-                <h6>Areas needing some improvement improvement <span class="smallheader-small">{{fair}}</span> .</h6>
+                <h6>Areas needing some improvement <span class="smallheader-small">{{fair}}</span> .</h6>
             </div>
             <!-- <div class="col-md-6">
                 <h4 class="smallheader-bold">Your relative strengths</h4>
@@ -67,13 +69,17 @@ Area(s) needing some improvement  [all components scored 2].
     </div>
 
 </section>
-
+<!-- 
 <div class="bar">
     <h6 class="smallheader" style="color: white;" >THE NEFERTITI PROJECT</h6>
     <h3 class="header">Your Results in detail</h3>
-</div>
+</div> -->
+
 
 <section>
+    <h6 class="smallheader" style="color: teal;" >THE NEFERTITI PROJECT</h6>
+    <h3 class="header" style="color: black;">Your Results in detail</h3>
+    <hr style="width: 30%; margin-left: 0;">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -93,13 +99,17 @@ Area(s) needing some improvement  [all components scored 2].
         </div>
     </div>
 </section>
-
+<!-- 
 <div class="bar">
     <h6 class="smallheader" style="color: white;" >THE NEFERTITI PROJECT</h6>
     <h3 class="header">Contact Us Now</h3>
-</div>
+</div> -->
 
 <section>
+    
+    <h6 class="smallheader" style="color: teal;" >THE NEFERTITI PROJECT</h6>
+    <h3 class="header" style="color: black;">Contact Us Now</h3>
+    <hr style="width: 30%; margin-left: 0;">
     <div class="container">
         <h4 class="smallheader-bold">You can reach out to us for training.</h4>
         <h6 class="smallheader-black">We here at The Nefertiti Project specialise in training classroom leaders in the 21st century ways of teaching. We prioritise in migrating out teachers from from the traditional way of learning.</h6>
@@ -136,5 +146,8 @@ Area(s) needing some improvement  [all components scored 2].
             </div>
         </div>
     </div>
+</section>
+</div>
+</div>
 </section>
 {% endblock %}
