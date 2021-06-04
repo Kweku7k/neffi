@@ -9,8 +9,14 @@
     <h4>There a no questions, please try again later.</h4>
     {% else %}
     <form action="{{url_for('report')}}" method="POST">
-        <fieldset class="scheduler-border">
-        {% for question in questions %}
+
+        
+        <!-- learnerCentricity -->
+        <h3 class="smallheader" style="font-size: larger;">LEARNER CENTRICITY</h3>
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+
+        {% for question in learnerCentricity %}
+
         <div class="row">
             <div class="col-md-6" style="margin-top: auto; margin-bottom: auto;">
                 <h6 class="smallheader">QUESTION {{question.id}}</h6>
@@ -41,10 +47,94 @@
                 </div>
             </div>
         </div>
-        <hr class="line">
+        <hr class="line" style="color: white;">
         {% endfor %}
+    </div>
+<br>
+<h3 class="smallheader" style="font-size: larger;">TEACHING FOR RECALL</h3>
+
+   <!-- teachingForEngagement -->
+   <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+    {% for question in teachingForRecall %}
+
+    <div class="row">
+        <div class="col-md-6" style="margin-top: auto; margin-bottom: auto;">
+            <h6 class="smallheader">QUESTION {{question.id}}</h6>
+            <h5 style="font-weight:400;">{{question.question}}.</h5>
+        </div>
+        <div class="col-md-6">
+            <div style="display: flex; justify-content: space-between;">
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                    <input type="radio" name="{{question.id}}" value="0">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                    <input type="radio" name="{{question.id}}" value="1">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                    <input type="radio" name="{{question.id}}" value="2">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                    <input type="radio" name="{{question.id}}" value="3">
+                </div>
+                <div style="text-align: center;">
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                    <input type="radio" name="{{question.id}}" value="4">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="line" style="color: white;">
+    {% endfor %}
+</div>
+
+<br>
+<h3 class="smallheader" style="font-size: larger;">TEACHING FOR ENGAGEMENT</h3>
+
+
+    <!-- teachingForEngagement -->
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+        {% for question in teachingForEngagement %}
+
+        <div class="row">
+            <div class="col-md-6" style="margin-top: auto; margin-bottom: auto;">
+                <h6 class="smallheader">QUESTION {{question.id}}</h6>
+                <h5 style="font-weight:400;">{{question.question}}.</h5>
+            </div>
+            <div class="col-md-6">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="text-align: center;">
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                        <input type="radio" name="{{question.id}}" value="0">
+                    </div>
+                    <div style="text-align: center;">
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                        <input type="radio" name="{{question.id}}" value="1">
+                    </div>
+                    <div style="text-align: center;">
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                        <input type="radio" name="{{question.id}}" value="2">
+                    </div>
+                    <div style="text-align: center;">
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                        <input type="radio" name="{{question.id}}" value="3">
+                    </div>
+                    <div style="text-align: center;">
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                        <input type="radio" name="{{question.id}}" value="4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="line" style="color: white;">
+        {% endfor %}
+    </div>
+
+     
         <button class="button" type="submit">Submit</button>
-    </fieldset>
     </form>
     {% endif %}
    

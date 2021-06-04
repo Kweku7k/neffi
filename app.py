@@ -2,6 +2,7 @@ from flask import Flask,redirect,url_for,render_template,request, flash
 from forms import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from send_mail import send_mail
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628b21sb13ce0c676dfde280ba245'
@@ -48,7 +49,6 @@ def skill(percentage):
             yourskill = "Exceptional"
     return yourskill
 
-
 def findPercentage(score, total):
     percentage = str(round((score / total) * 100)) + "%"
     return percentage
@@ -78,15 +78,17 @@ def home():
 @app.route('/forms')
 def forms():
     questions = Question.query.all()
+    learnerCentricity = Question.query.filter_by(skillGroup = "Learner Centricity").all()
+    teachingForRecall = Question.query.filter_by(skillGroup = "Teaching for Recall").all()
+    teachingForEngagement = Question.query.filter_by(skillGroup = "Teaching for Engagement").all()
     totalquestions = len(questions)
-    return render_template('forms.html', questions = questions, totalquestions=totalquestions)
+    return render_template('forms.html', questions = questions, totalquestions=totalquestions, learnerCentricity=learnerCentricity, teachingForRecall=teachingForRecall, teachingForEngagement=teachingForEngagement )
 
 @app.route('/admin')
 def admin():
     questions = Question.query.all()
     totalquestions = len(questions)
     return render_template('admin.html', questions = questions, totalquestions = totalquestions)
-
 
 @app.route('/admin/questions')
 def adminquestions():
@@ -107,6 +109,7 @@ def addquestion():
 
 @app.route('/report', methods=['GET','POST'])
 def report():
+    send_mail()
     questions = Question.query.all()
     totalquestions = len(questions)
     score = 0
@@ -140,18 +143,17 @@ def report():
         if point == 0:
             print("Much attention Needed")
             attention.append(i.component)
+
         # Fill the skillGroup for calculations
         if (i.skillGroup) == "Learner Centricity":
             learnerCentricity.append(point)
             print("This is a Learner Centricity Component with a total of ")
-
         if (i.skillGroup) == "Teaching for Recall":
             print("This is a Teaching for Recall Component")
             teachingForRecall.append(point)
         if (i.skillGroup) == "Teaching for Engagement":
             print("This is a Teaching for Engagement Component")
             teachingForEngagement.append(point)
-
 
     print("Score = " + str(score))
     total = totalquestions*4
