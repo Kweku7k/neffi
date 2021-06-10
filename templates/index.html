@@ -32,19 +32,28 @@
                     </div>
                     <br>
                         {{ form.hidden_tag() }}
-                        <div class="form-group" style="width: 100%;">
+                        <div class="row formSpacing" >
+
+                        <div class="form-group col-md-6" style="width: 100%;">
                             {{ form.firstname(class="space", placeholder="Enter your first name")}}
                         </div>
-                        <div class="form-group" style="width: 100%;">
+                        <div class="form-group col-md-6" style="width: 100%;">
                             {{ form.lastname(class="space", placeholder="Enter your last name")}}
                         </div>
-                        <div class="form-group" style="width: 100%;">
+                        </div>
+
+
+                        <div class="row formSpacing">
+
+                        <div class="form-group col-md-6" style="width: 100%;">
                             {{ form.phone(class="space", placeholder="Enter your phone number")}}
                         </div>
-                        <div class="form-group" style="width: 100%;">
+                        <div class="form-group col-md-6" style="width: 100%;">
                             {{ form.email(class="space", placeholder="Enter your email address")}}
                         </div>
-                        <div class="form-group" style="width: 100%;">
+                    </div>
+
+                        <div class="form-group formSpacing" style="width: 100%;">
                             {{ form.course(class="space", placeholder="Enter the course/lesson name for your assessment")}}
                         </div>
                         <!-- <div class="form-group" style="text-align: center;">
@@ -59,6 +68,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
 </section>

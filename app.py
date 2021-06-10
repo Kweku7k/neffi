@@ -1,4 +1,4 @@
-from flask import Flask,redirect,url_for,render_template,request, flash
+from flask import Flask,redirect,url_for,render_template,request, flash, session
 from forms import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -82,8 +82,13 @@ def home():
         print(new_user)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('forms'))
+        session['firstname'] = new_user.firstname
+        session['lastname'] = new_user.lastname
+        session['phone'] = new_user.phone
+        session['email'] = new_user.email
+        session['course'] = form.course.data
         flash(f'Thank you' + form.firstname.data)
+        return redirect(url_for('forms'))
     return render_template('index.html', form=form)
 
 @app.route('/forms')
@@ -128,6 +133,8 @@ def send_sms(api_key,phone,message,sender_id):
 @app.route('/report', methods=['GET','POST'])
 def report():
     send_mail()
+    username = session['username']
+    print("YoYOYoYo" + username)
     questions = Question.query.all()
     totalquestions = len(questions)
     score = 0
@@ -191,8 +198,13 @@ def report():
     print(learnerCentricityTotal)
     print(teachingForRecallTotal)
     print(teachingForEngagementTotal)
+    firstname = session['firstname']
+    lastname = session['lastname']
+    phone = session['phone']
+    email = session['email']
+    course = session['course']
 
-    msgbody = "Nana Kweku has filled your form."
+    msgbody = "You have recieved a new entry from " + firstname + " " + lastname + " . Email: " + email + ". Phone: " + phone   
     send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
     return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':

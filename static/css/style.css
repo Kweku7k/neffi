@@ -64,6 +64,10 @@ section{
     margin-top:auto ;
     padding: 30px;
 }
+
+.formSpacing .space{
+    padding: 10px;
+}
 .button{
     border: none;
     background-color: #019B9B;
