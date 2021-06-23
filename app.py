@@ -133,8 +133,6 @@ def send_sms(api_key,phone,message,sender_id):
 @app.route('/report', methods=['GET','POST'])
 def report():
     send_mail()
-    username = session['username']
-    print("YoYOYoYo" + username)
     questions = Question.query.all()
     totalquestions = len(questions)
     score = 0
