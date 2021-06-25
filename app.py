@@ -94,9 +94,25 @@ def home():
 @app.route('/forms')
 def forms():
     questions = Question.query.all()
-    learnerCentricity = Question.query.filter_by(skillGroup = "Learner Centricity").all()
-    teachingForRecall = Question.query.filter_by(skillGroup = "Teaching for Recall").all()
-    teachingForEngagement = Question.query.filter_by(skillGroup = "Teaching for Engagement").all()
+    set1 = []
+    set2 = []
+    set3 = []
+    for question in questions:
+        if question.id <= 7:
+            set1.append(question)
+        if  8 <= question.id <= 14:
+            set2.append(question)
+        if  15 <= question.id <= 22:
+            set3.append(question)
+        print(set3)
+        # while 7 < question.id < 14:
+        
+    learnerCentricity = set1
+    # learnerCentricity = Question.query.filter_by(skillGroup = "Learner Centricity").all()
+    teachingForRecall = set2
+    # teachingForRecall = Question.query.filter_by(skillGroup = "Teaching for Recall").all()
+    teachingForEngagement = set3
+    # teachingForEngagement = Question.query.filter_by(skillGroup = "Teaching for Engagement").all()
     totalquestions = len(questions)
     return render_template('forms.html', questions = questions, totalquestions=totalquestions, learnerCentricity=learnerCentricity, teachingForRecall=teachingForRecall, teachingForEngagement=teachingForEngagement )
 
@@ -154,18 +170,24 @@ def report():
         print(score)
         print("Component " + i.skillGroup)
         print(i.skillGroup + " - " + str(point))
+
         if 3 <= point <= 4:
             print("Appending Strengths")
-            strengths.append(i.component)
-        if 0 <= point <= 1:
+            if not i.component in strengths:
+                print("Item is in array already.")
+                strengths.append(i.component)
+        if point == 1:
             print("Needs Much Work")
-            muchwork.append(i.component)    
+            if not i.component in muchwork:
+                muchwork.append(i.component)    
         if point == 2:
             print("Appending Fair")
-            fair.append(i.component)
+            if not i.component in fair:
+                fair.append(i.component)
         if point == 0:
             print("Much attention Needed")
-            attention.append(i.component)
+            if not i.component in attention:
+                attention.append(i.component)
 
         # Fill the skillGroup for calculations
         if (i.skillGroup) == "Learner Centricity":
@@ -202,7 +224,7 @@ def report():
     email = session['email']
     course = session['course']
 
-    msgbody = "You have recieved a new entry from " + firstname + " " + lastname + " . Email: " + email + ". Phone: " + phone   
+    msgbody = "You have recieved a new entry from " + firstname + " " + lastname + " . Email: " + email + ". Phone: " + phone + ". Course: " + course  
     send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
     return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':
