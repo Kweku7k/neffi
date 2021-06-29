@@ -146,6 +146,10 @@ def send_sms(api_key,phone,message,sender_id):
     print (content)
     print (url)
 
+@app.route('/newreport')
+def newreport():
+    return render_template('newreport.html')
+
 @app.route('/report', methods=['GET','POST'])
 def report():
     send_mail()

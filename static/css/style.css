@@ -125,6 +125,78 @@ section{
     /* font-size: small; */
 }
 
+/* new report */
+
+.startCard{
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.percentageEllipse{
+   height: 200px;
+   width: 200px;
+   border-radius:50% ;
+   text-align: center;
+   vertical-align: middle;
+   padding-top: 60px;
+   font-size: 80px;
+   margin: auto;
+   box-shadow: 0px 12.8681px 32.1702px rgba(8, 102, 102, 0.2);
+}
+
+.percentageEllipse h4{
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.guideCard{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    /* width: 90%; */
+    display: flex;
+
+}
+
+.guideCard h6{
+    color: gray;
+    font-weight: 400;
+
+}
+
+.guidebar{
+width: 5px;
+background-color: greenyellow;
+border-radius:10px ;
+padding-left:10px ;
+padding-right:10px ;
+height: 95%;
+margin-top: auto;
+margin-bottom: auto;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.guidetext{
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.caption{
+    padding: 20px;
+    text-align: center;
+    font-size: large;
+}
+
+.recommendation{
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+padding: 20px;
+border-radius:10px;
+}
+
 .circle-graph{
     border-radius: 50%;
     width: 200px;
@@ -147,6 +219,8 @@ section{
 .card{
     padding: 10px;
 }
+
+
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
