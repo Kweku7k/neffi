@@ -230,6 +230,6 @@ def report():
 
     msgbody = "You have recieved a new entry from " + firstname + " " + lastname + " . Email: " + email + ". Phone: " + phone + ". Course: " + course  
     send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
-    return render_template('report.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
+    return render_template('newreport.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)

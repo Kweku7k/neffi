@@ -8,7 +8,7 @@
     <div class="row startCard">
         <div class="col-md-6">
             <h6>OVERALL LECTURESOFT 21ST CENTURY TEACHING SCORE</h6>    
-            <h1 style="font-size: 100px; font-weight: 700;">61%</h1>
+            <h1 style="font-size: 100px; font-weight: 700;">{{percentage}}%</h1>
         </div>
         <div class="col-md-6">
             <h4>Overall, your 21st century teaching skills are Acceptable</h4>
@@ -26,24 +26,23 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="percentageEllipse">
-                    <h4>50%</h4>
+                    <h4>{{learnerCentricityTotal}}</h4>
                 </div>
                 <h6 class="caption">Learner Centricity</h6>
 
             </div>
             <div class="col-md-4">
                 <div class="percentageEllipse">
-                    <h4>50%</h4>
+                    <h4>{{teachingForRecallTotal}}</h4>
                 </div>
-                <h6 class="caption">Learner Centricity</h6>
+                <h6 class="caption">Teaching for recall</h6>
                 
             </div>
             <div class="col-md-4">
                 <div class="percentageEllipse">
-                    <h4>50%</h4>
+                    <h4>{{teachingForEngagementTotal}}</h4>
                 </div>
-                <h6 class="caption">Learner Centricity</h6>
-
+                <h6 class="caption">Student engagement</h6>
             </div>
         </div>
     </section>
@@ -56,9 +55,8 @@
                 <div class="guideCard">
                     <div class="guidebar"></div>
                     <div class="guidetext">
-                        <h5>SETTINGS</h5>
-                        <h6>Empowerment, Usefulness, Lecture focus, 
-                            Empowerment, Success,  Meaningful application,</h6>
+                        <h5>STRENGTHS</h5>
+                        <h6>{{strengths}}</h6>
                     </div>
                 </div>
             </div>
@@ -67,9 +65,8 @@
                 <div class="guideCard">
                     <div class="guidebar"></div>
                     <div class="guidetext">
-                        <h5>SETTINGS</h5>
-                        <h6>Empowerment, Usefulness, Lecture focus, 
-                            Empowerment, Success,  Meaningful application,</h6>
+                        <h5>NEED WORK</h5>
+                        <h6>{{muchwork}},</h6>
                     </div>
                 </div>
             </div>
@@ -78,9 +75,8 @@
                 <div class="guideCard">
                     <div class="guidebar"></div>
                     <div class="guidetext">
-                        <h5>SETTINGS</h5>
-                        <h6>Empowerment, Usefulness, Lecture focus, 
-                            Empowerment, Success,  Meaningful application,</h6>
+                        <h5>REQUIRES ATTENTION</h5>
+                        <h6>{{attention}}</h6>
                     </div>
                 </div>
             </div>
@@ -89,9 +85,8 @@
                 <div class="guideCard">
                     <div class="guidebar"></div>
                     <div class="guidetext">
-                        <h5>SETTINGS</h5>
-                        <h6>Empowerment, Usefulness, Lecture focus, 
-                            Empowerment, Success,  Meaningful application,</h6>
+                        <h5>NEED IMPROVEMENT</h5>
+                        <h6>{{fair}}</h6>
                     </div>
                 </div>
             </div>
