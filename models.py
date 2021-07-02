@@ -7,7 +7,7 @@ class User(db.Model):
     lastname = db.Column(db.String(), nullable=False)
     phone = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
-
+    answers = db.Column(db.String(), default="Error in retrieving the answers")
     def __repr__(self):
         return f"User('{self.lastname}', '{self.email}', '{self.phone}')"
 

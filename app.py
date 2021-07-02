@@ -2,7 +2,8 @@ from flask import Flask,redirect,url_for,render_template,request, flash, session
 from forms import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from send_mail import send_mail
+# from send_mail import send_mail
+from flask_mail import Mail, Message
 import urllib.request, urllib.parse
 import urllib
 
@@ -15,6 +16,15 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://isbiiqutsfeekn:c2058971f5bb
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 from models import *
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'mr.adumatta@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Babebabe12321'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail= Mail(app)
+
 
 #Functions
 def skill(percentage):
@@ -58,6 +68,12 @@ def findPercentage(score, total):
         percentage = 0
     return percentage
 
+def sendmail(body):
+    msg = Message('Results from TNP', sender = 'mr.adumatta@gmail.com', recipients = ['lecturesoft@gmail.com','nkba@live.com'])
+    msg.body = body
+    mail.send(msg)
+    return 'Sent'
+
 def findTotal(array):
     total = 0;
     for i in range(len(array)):
@@ -73,7 +89,7 @@ def findTotal(array):
 
     return percentage
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def home():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -91,6 +107,10 @@ def home():
         return redirect(url_for('forms'))
     return render_template('index.html', form=form)
 
+
+
+
+    
 @app.route('/forms')
 def forms():
     questions = Question.query.all()
@@ -152,7 +172,10 @@ def newreport():
 
 @app.route('/report', methods=['GET','POST'])
 def report():
-    send_mail()
+    # send_mail()
+
+    forMail = []
+    mailBody = ''
     questions = Question.query.all()
     totalquestions = len(questions)
     score = 0
@@ -172,9 +195,12 @@ def report():
         # This picks the point you scored for each question and makes it an integer for a specific time
         score = score + point
         print(score)
-        print("Component " + i.skillGroup)
+        print("Component " + i.question)
         print(i.skillGroup + " - " + str(point))
 
+
+        mailBody += str(i.id) + " - " + i.question + " - " + str(point) + "\n"
+        # forMail.append(str(i.id) + " - " + i.question + "                                                    " )
         if 3 <= point <= 4:
             print("Appending Strengths")
             if not i.component in strengths:
@@ -228,8 +254,10 @@ def report():
     email = session['email']
     course = session['course']
 
-    msgbody = "You have recieved a new entry from " + firstname + " " + lastname + " . Email: " + email + ". Phone: " + phone + ". Course: " + course  
-    send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
+    print("This is sending to the mail " + str(forMail))
+    msgbody = "You have recieved a new entry from " + firstname + " " + lastname + "\n" + " Email: " + email + "\n" + ". Phone: " + phone + "\n"  + ". Course: " + course  +"\n"+ str(mailBody)
+    sendmail(msgbody)
+    # send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
     return render_template('newreport.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
