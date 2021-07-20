@@ -1,5 +1,6 @@
-from flask import Flask,redirect,url_for,render_template,request, flash, session
+from flask import Flask,redirect,url_for,render_template,request, flash, session,json, jsonify
 from forms import *
+from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 # from send_mail import send_mail
@@ -13,9 +14,24 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://isbiiqutsfeekn:c2058971f5bb424127a6b01d9ed3419b5599727a6f67d80136187b13465fe69a@ec2-34-200-94-86.compute-1.amazonaws.com:5432/d3ucdicb4224a8'
 
+
+api_v1_cors_config = {
+    "origins":["http://localhost:3000"],
+   " methods":['POST','OPTIONS']
+    # "Access-Control-Allow-Origin":'localhost:3000'
+}
+
+cors = CORS(app, resources={
+    r"/addpost":api_v1_cors_config
+})
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 from models import *
+
+
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -74,6 +90,12 @@ def sendmail(body):
     mail.send(msg)
     return 'Sent'
 
+def sendtelegram(params):
+    url = "https://api.telegram.org/bot1699472650:AAEso9qTbz1ODvKZMgRru5FhCEux_91bgK0/sendMessage?chat_id=-511058194&text=" + urllib.parse.quote(params)
+    content = urllib.request.urlopen(url).read()
+    print(content)
+    return content
+
 def findTotal(array):
     total = 0;
     for i in range(len(array)):
@@ -109,8 +131,44 @@ def home():
 
 
 
+@app.route('/adduser',methods=['POST'])
+@cross_origin()
+def adduser():
+    newUser = User(firstname=request.json['firstname'], lastname=request.json['lastname'], phone=request.json['phone'], email=request.json['email'], answers="None")
+    print('From react')
+    print(newUser)
+    return render_template('adminpage.html')
 
-    
+@app.route('/users', methods=['POST','GET'])
+def users():
+    users = User.query.all()
+    allusers = dict.fromkeys(users)
+    # users = [{'id':1, 'name':'Kweku'},{'id':2, 'name':'Nana'}]
+    print(type(allusers))
+    return jsonify({'users':allusers})
+
+    # return json.dumps(
+    #     {'users':users}
+    # )
+    # response = app.response_class(
+    #     response=json.dumps(
+    #         [
+    #             {
+    #         username:users.firstname,
+    #         email:users.email,
+    #        id:users.id
+    #             }
+    #         ]
+    #     ),
+    #     mimetype='application/json'
+    # )
+    # return response
+
+@app.route('/signup', methods=['POST','GET'])
+def signup():
+
+    return 
+
 @app.route('/forms')
 def forms():
     questions = Question.query.all()
@@ -254,10 +312,15 @@ def report():
     email = session['email']
     course = session['course']
 
+
+    # params = "New Account Created for " + new_user.username
+
     print("This is sending to the mail " + str(forMail))
     msgbody = "You have recieved a new entry from " + firstname + " " + lastname + "\n" + " Email: " + email + "\n" + ". Phone: " + phone + "\n"  + ". Course: " + course  +"\n"+ str(mailBody)
-    sendmail(msgbody)
+    # sendmail(msgbody)
+    sendtelegram(msgbody)
+
     # send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
     return render_template('newreport.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
-if __name__ == '__main__':
+if __name__ == '__main__':  
     app.run(port=5000,debug=True)
