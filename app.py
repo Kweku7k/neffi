@@ -300,6 +300,8 @@ def report():
     print("Your Strengths = " + str(strengths))
     print("Attention needed = " + str(attention))
     print("Fair Skills = " + str(fair))
+    holdme = str(fair)
+    print("++++++++++++++++++++++++")
     learnerCentricityTotal = findTotal(learnerCentricity)
     teachingForRecallTotal = findTotal(teachingForRecall)
     teachingForEngagementTotal = findTotal(teachingForEngagement)
@@ -312,15 +314,21 @@ def report():
     email = session['email']
     course = session['course']
 
-
     # params = "New Account Created for " + new_user.username
 
     print("This is sending to the mail " + str(forMail))
     msgbody = "You have recieved a new entry from " + firstname + " " + lastname + "\n" + " Email: " + email + "\n" + ". Phone: " + phone + "\n"  + ". Course: " + course  +"\n"+ str(mailBody)
     # sendmail(msgbody)
     sendtelegram(msgbody)
+    cleanfair = str(fair)
+
 
     # send_sms('aniXLCfDJ2S0F1joBHuM0FcmH','0545977191',msgbody,'PrestoSL')
-    return render_template('newreport.html', percentage = percentage, skills=skills, strengths=strengths, attention=attention, muchwork=muchwork, fair=fair, learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
+    return render_template('newreport.html', percentage = percentage, skills=skills, 
+    strengths=(str(strengths).replace( '[' , '').replace( ']' , '').replace( "'" , '')), 
+    attention=(str(attention).replace( '[' , '').replace( ']' , '').replace( "'" , '')), 
+    muchwork=(str(muchwork).replace( '[' , '').replace( ']' , '').replace( "'" , '')), 
+    fair=(str(fair).replace( '[' , '').replace( ']' , '').replace( "'" , '')), 
+    learnerCentricityTotal=learnerCentricityTotal, teachingForRecallTotal=teachingForRecallTotal, teachingForEngagementTotal=teachingForEngagementTotal)
 if __name__ == '__main__':  
     app.run(port=5000,debug=True)
