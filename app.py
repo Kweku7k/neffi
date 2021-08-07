@@ -300,7 +300,6 @@ def report():
     print("Your Strengths = " + str(strengths))
     print("Attention needed = " + str(attention))
     print("Fair Skills = " + str(fair))
-    holdme = str(fair)
     print("++++++++++++++++++++++++")
     learnerCentricityTotal = findTotal(learnerCentricity)
     teachingForRecallTotal = findTotal(teachingForRecall)

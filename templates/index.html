@@ -49,9 +49,11 @@
                             {{ form.email(class="space", placeholder="Enter your email address")}}
                         </div>
                     </div>
-                        <div class="form-group formSpacing" style="width: 100%;">
-                            {{ form.course(class="space", placeholder="Course/lesson name")}}
-                        </div>
+                    <div class="form-group formSpacing" style="width: 100%;">
+                        <small class="text-muted" style="font-size: 16px;">It is useful to have a particular course in mind (one that you teach) while you answer the assessment questions. </small>
+                        <small class="text-muted" style="font-size: 16px; text-align: left;">Fill in the course name below.</small>
+                        {{ form.course(class="space", placeholder="Course/lesson name")}}
+                    </div>
                         <div class="flexrow" id="formsubmit">
                             <a href="#">
                                 <h6 class="text-mutes">Help</h6>
