@@ -171,7 +171,7 @@ def signup():
 
 @app.route('/forms')
 def forms():
-    questions = Question.query.all()
+    questions = Question.query.order_by(Question.id.asc()).all()
     set1 = []
     set2 = []
     set3 = []
