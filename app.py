@@ -190,8 +190,6 @@ def ussd():
   # Send the response back to the API
   return response
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
 
 @app.route('/users', methods=['POST','GET'])
