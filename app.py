@@ -154,11 +154,10 @@ def adduser():
 #     print(data.decode("utf-8"))
 #     return 'done'
 
-app = Flask(__name__)
 
 @app.route("/ussd", methods = ['POST'])
 def ussd():
-  # Read the variables sent via POST from our API
+  # Read the variables sent via POST from our API   
   session_id   = request.values.get("sessionId", None)
   serviceCode  = request.values.get("serviceCode", None)
   phone_number = request.values.get("phoneNumber", None)
