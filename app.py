@@ -170,14 +170,14 @@ def ussd():
 
   if text == '':
       # This is the first request. Note how we start the response with CON
-      response  = "CON What would you want to check \n"
-      response += "1. My Account \n"
-      response += "2. My phone number"
+      response  = "CON Welcome to Shell, what would you like to do today \n"
+      response += "1. Pay for fuel \n"
+      response += "2. Join Loyalty Program"
 
   elif text    == '1':
       # Business logic for first level response
-      response  = "CON Choose account information you want to view \n"
-      response += "1. Account number"
+      response  = "CON Please enter the attendants code \n"
+    #   response += "1. Account number"
 
   elif text   == '2':
       # This is a terminal request. Note how we start the response with END
@@ -187,7 +187,7 @@ def ussd():
       # This is a second level response where the user selected 1 in the first instance
       accountNumber  = "ACC1001"
       # This is a terminal request. Note how we start the response with END
-      response       = "END Your account number is " + accountNumber
+      response       = "Please enter the amount fuel you are buying? " 
 
   else :
       response = "END Invalid choice"
