@@ -1,4 +1,4 @@
-from flask import Flask,redirect,url_for,render_template,request, flash, session,json, jsonify
+from flask import Flask,redirect,url_for,render_template,request, flash, session, jsonify
 from forms import *
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +7,9 @@ from flask_migrate import Migrate
 from flask_mail import Mail, Message
 import urllib.request, urllib.parse
 import urllib
+import os
+import http.client
+
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628b21sb13ce0c676dfde280ba245'
@@ -132,20 +135,77 @@ def home():
 
 
 @app.route('/adduser',methods=['POST'])
-@cross_origin()
+@cross_origin() 
 def adduser():
     newUser = User(firstname=request.json['firstname'], lastname=request.json['lastname'], phone=request.json['phone'], email=request.json['email'], answers="None")
     print('From react')
     print(newUser)
     return render_template('adminpage.html')
 
+
+# @app.route("/ussd")
+# def ussd():
+#     conn = http.client.HTTPSConnection("{{USSDBaseURL}}{{endPoint}}")
+#     payload = "{\n    \"USERID\": \"NALOTest\",\n    \"MSISDN\": \"233XXXXXXXXX\",\n    \"USERDATA\": \"3\",\n    \"MSGTYPE\": false,\n    \"NETWORK\": \"MTN\"\n}"
+#     headers = {}
+#     conn.request("POST", "/", payload, headers)
+#     res = conn.getresponse()
+#     data = res.read()
+#     print(data.decode("utf-8"))
+#     return 'done'
+
+app = Flask(__name__)
+
+@app.route("/ussd", methods = ['POST'])
+def ussd():
+  # Read the variables sent via POST from our API
+  session_id   = request.values.get("sessionId", None)
+  serviceCode  = request.values.get("serviceCode", None)
+  phone_number = request.values.get("phoneNumber", None)
+  text         = request.values.get("text", "default")
+
+  if text      == '':
+      # This is the first request. Note how we start the response with CON
+      response  = "CON What would you want to check \n"
+      response += "1. My Account \n"
+      response += "2. My phone number"
+
+  elif text    == '1':
+      # Business logic for first level response
+      response  = "CON Choose account information you want to view \n"
+      response += "1. Account number"
+
+  elif text   == '2':
+      # This is a terminal request. Note how we start the response with END
+      response = "END Your phone number is " + phone_number
+
+  elif text          == '1*1':
+      # This is a second level response where the user selected 1 in the first instance
+      accountNumber  = "ACC1001"
+      # This is a terminal request. Note how we start the response with END
+      response       = "END Your account number is " + accountNumber
+
+  else :
+      response = "END Invalid choice"
+
+  # Send the response back to the API
+  return response
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 @app.route('/users', methods=['POST','GET'])
 def users():
     users = User.query.all()
     allusers = dict.fromkeys(users)
+    # allusers = us /ers 
     # users = [{'id':1, 'name':'Kweku'},{'id':2, 'name':'Nana'}]
+    print(type(users))
     print(type(allusers))
-    return jsonify({'users':allusers})
+    print(allusers)
+    # return jsonify({'users':users})
+    return jsonify(users)
 
     # return json.dumps(
     #     {'users':users}
