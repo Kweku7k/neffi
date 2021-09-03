@@ -143,6 +143,8 @@ def adduser():
     return render_template('adminpage.html')
 
 
+
+
 # @app.route("/ussd")
 # def ussd():
 #     conn = http.client.HTTPSConnection("{{USSDBaseURL}}{{endPoint}}")
@@ -169,6 +171,7 @@ def ussd():
 #   text         = "1"
 
   if text == '':
+      print("text" + text)
       # This is the first request. Note how we start the response with CON
       response  = "CON Welcome to Shell, what would you like to do today \n"
       response += "1. Pay for fuel \n"
@@ -176,16 +179,22 @@ def ussd():
 
   elif text    == '1':
       # Business logic for first level response
+      print("text" + text)
+
       response  = "CON Please enter the attendants code \n"
     #   response += "1. Account number"
 
   elif text   == '2':
+      print("text" + text)
+
       # This is a terminal request. Note how we start the response with END
       response = "END Your phone number is " + phone_number
 
   elif text          == '1*1':
+      print("text" + text)
+
       # This is a second level response where the user selected 1 in the first instance
-      accountNumber  = "ACC1001"
+    #   accountNumber  = "ACC1001"
       # This is a terminal request. Note how we start the response with END
       response       = "Please enter the amount fuel you are buying? " 
 
@@ -207,7 +216,7 @@ def users():
     print(type(allusers))
     print(allusers)
     # return jsonify({'users':users})
-    return jsonify(users)
+    return "users"
 
     # return json.dumps(
     #     {'users':users}
