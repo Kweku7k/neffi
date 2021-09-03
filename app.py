@@ -1,4 +1,4 @@
-from flask import Flask,redirect,url_for,render_template,request, flash, session, jsonify
+from flask import Flask,redirect,url_for,render_template,request, flash, session, jsonify, json
 from forms import *
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
@@ -215,8 +215,8 @@ def users():
     print(type(users))
     print(type(allusers))
     print(allusers)
-    # return jsonify({'users':users})
-    return "users"
+    # return json({'users':users})
+    return str(users)
 
     # return json.dumps(
     #     {'users':users}
