@@ -243,13 +243,13 @@ def ussd():
 
 #     return phonenumber
 
-@app.route("/testPost", methods=['POST','GET'])
-def testPost():
+@app.route('/testPost/<string:number>', methods=['POST','GET'])
+def testPost(number):
     print("gotten requestio")
+    print(number)
     # point = int(request.data[ adj ])
     print(request.data)
     return "DONE"
-
 
 @app.route('/users', methods=['POST','GET'])
 def users():
