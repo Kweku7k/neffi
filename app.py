@@ -1,3 +1,5 @@
+from crypt import methods
+import re
 from flask import Flask,redirect,url_for,render_template,request, flash, session, jsonify, json
 from forms import *
 from flask_cors import CORS, cross_origin
@@ -210,37 +212,44 @@ def ussd():
 
 
 
-@app.route("/phone/<string:phonenumber>")
-def phone(phonenumber):
-    credentials = 'selasi@delaphonegh.com', '3AsX3Jz7u28NV6U'
-    session = requests.Session()
-    session.auth = credentials
+# @app.route("/phone/<string:phonenumber>")
+# def phone(phonenumber):
+#     credentials = 'selasi@delaphonegh.com', '3AsX3Jz7u28NV6U'
+#     session = requests.Session()
+#     session.auth = credentials
 
-    params = {
-        'query': 'role:end-user phone:'+phonenumber,
-        'sort_by': 'created_at',
-        'sort_order': 'asc'
-    }
+#     os.system("zoiper")
 
-    url = 'https://delaphonegh.zendesk.com/api/v2/search.json?' + urlencode(params)
-    response = session.get(url)
-    if response.status_code != 200:
-        print('Status:', response.status_code, 'Problem with the request. Exiting.')
-        exit()
+#     params = {
+#         'query': 'role:end-user phone:'+phonenumber,
+#         'sort_by': 'created_at',
+#         'sort_order': 'asc'
+#     }
 
-    # Print the subject of each ticket in the results
-    data = response.json()
-    for result in data['results']:
-        userId = result['id']
-        userName = result['name']
-        print(userId)
-        print(userName)
-        webbrowser.open("https://delaphonegh.zendesk.com/agent/users/"+str(userId))
-        # urllib.request.urlopen('https://delaphonegh.zendesk.com/agent/users/386352282137')
-        # urllib.request.urlopen('https://www.google.com')
-        # return redirect('https://delaphonegh.zendesk.com/agent/users/'+str(userId))
+#     url = 'https://delaphonegh.zendesk.com/api/v2/search.json?' + urlencode(params)
+#     response = session.get(url)
+#     if response.status_code != 200:
+#         print('Status:', response.status_code, 'Problem with the request. Exiting.')
+#         exit()
 
-    return phonenumber
+#     # Print the subject of each ticket in the results
+#     data = response.json()
+#     for result in data['results']:
+#         userId = result['id']
+#         userName = result['name']
+#         print(userId)
+#         print(userName)
+#         webbrowser.open("https://delaphonegh.zendesk.com/agent/users/"+str(userId))
+
+#     return phonenumber
+
+@app.route("/testPost", methods=['POST','GET'])
+def testPost():
+    print("gotten requestio")
+    # point = int(request.data[ adj ])
+    print(request.data)
+    return "DONE"
+
 
 @app.route('/users', methods=['POST','GET'])
 def users():
