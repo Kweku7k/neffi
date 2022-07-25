@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<section>
+<section style="margin-bottom: 20px;">
 
     
     
     <div class="container">
     <div>
         <p>
-            Please answer the questions based on your usual practice. 
+            Please access the area under the consideration by ticking the appropriate boxes. 
 
         </p>
         
@@ -17,17 +17,17 @@
         </b>
 <br/>
 <br/>
-        <h6 >GUIDE: Never-0%, Rarely-25%,  Sometimes-50%, Often-75%, Always-100% of the time</h6>
+        <h6 >GUIDE: Excellent-5, Very Good-4,  Good-3, Average-2, Poor-1</h6>
     </div>
     <br>
     {% if totalquestions == 0 %}
     <h4>There a no questions, please try again later.</h4>
     {% else %}
-    <form action="{{url_for('report')}}" method="POST">
+    <form action="{{url_for('newreport')}}" method="POST">
 
         
         <!-- learnerCentricity -->
-        <!-- <h3 class="smallheader" style="font-size: larger;">LEARNER CENTRICITY</h3> -->
+        <h3 class="smallheader">ACADEMIC PROGRAMME EVALUATION</h3>
         <div class="card shadow-sm p-3 mb-5 bg-white rounded">
 
         {% for question in learnerCentricity %}
@@ -40,23 +40,23 @@
             <div class="col-md-6">
                 <div style="display: flex; justify-content: space-between;">
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">1</h6>
                         <input type="radio" name="{{question.id}}" required value="0">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">2</h6>
                         <input type="radio" name="{{question.id}}" value="1">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">3</h6>
                         <input type="radio" name="{{question.id}}" value="2">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">4</h6>
                         <input type="radio" name="{{question.id}}" value="3">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">5</h6>
                         <input type="radio" name="{{question.id}}" value="4">
                     </div>
                 </div>
@@ -66,9 +66,8 @@
         {% endfor %}
     </div>
 <br>
-<!-- <h3 class="smallheader" style="font-size: larger;">TEACHING FOR RECALL</h3> -->
+<h3 class="smallheader" style="font-size: larger;">TEACHING AND LEARNING ENVIRONMENT</h3>
 
-   <!-- teachingForEngagement -->
    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
     {% for question in teachingForRecall %}
 
@@ -80,23 +79,23 @@
         <div class="col-md-6">
             <div style="display: flex; justify-content: space-between;">
                 <div style="text-align: center;">
-                    <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">1</h6>
                     <input type="radio" name="{{question.id}}" required value="0">
                 </div>
                 <div style="text-align: center;">
-                    <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">2</h6>
                     <input type="radio" name="{{question.id}}" value="1">
                 </div>
                 <div style="text-align: center;">
-                    <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">3</h6>
                     <input type="radio" name="{{question.id}}" value="2">
                 </div>
                 <div style="text-align: center;">
-                    <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">4</h6>
                     <input type="radio" name="{{question.id}}" value="3">
                 </div>
                 <div style="text-align: center;">
-                    <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                    <h6 style="color: grey; font-weight: 500; font-size: small;">5</h6>
                     <input type="radio" name="{{question.id}}" value="4">
                 </div>
             </div>
@@ -107,10 +106,9 @@
 </div>
 
 <br>
-<!-- <h3 class="smallheader" style="font-size: larger;">TEACHING FOR ENGAGEMENT</h3> -->
+<h3 class="smallheader" style="font-size: larger;">HEALTH, SECURITY AND SPORTS EVALUATION</h3>
 
 
-    <!-- teachingForEngagement -->
     <div class="card shadow-sm mb-5 bg-white rounded">
         {% for question in teachingForEngagement %}
 
@@ -122,23 +120,23 @@
             <div class="col-md-6">
                 <div style="display: flex; justify-content: space-between;">
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Never</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">1</h6>
                         <input type="radio" name="{{question.id}}" required value="0">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Rarely</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">2</h6>
                         <input type="radio" name="{{question.id}}" value="1">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Sometimes</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">3</h6>
                         <input type="radio" name="{{question.id}}" value="2">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Often</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">4</h6>
                         <input type="radio" name="{{question.id}}" value="3">
                     </div>
                     <div style="text-align: center;">
-                        <h6 style="color: grey; font-weight: 500; font-size: small;">Always</h6>
+                        <h6 style="color: grey; font-weight: 500; font-size: small;">5</h6>
                         <input type="radio" name="{{question.id}}" value="4">
                     </div>
                 </div>
@@ -146,6 +144,12 @@
         </div>
         <hr class="line" style="color: white;">
         {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <label for="">Please tell us why you would recommend central to another person. Leve if blank if you wouldn't</label>
+      <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+      <small id="helpId" class="text-muted">Help text</small>
     </div>
 
      

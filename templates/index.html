@@ -9,10 +9,10 @@
             <div class="container">
                 <div style="text-align: center;">
                     <!-- <img src="{{url_for("static", filename="img/reg.png")}}" width="100px" alt=""> -->
-                    <h4>Welcome to the LectureSoft BASIC Skills Self-Assessment.</h4>
-                    <h6>Your 21st Century Teaching and Learning Toolkit</h6>
+                    <h4>Hello Graduating Class</h4>
+                    <h6>Compliance and quality assurance directorate</h6>
                     <br>
-                    <div style="text-align: left;">
+                    <!-- <div style="text-align: left;">
 
                         <h6>Are you a <b><i>teacher-centered</b></i> or a <b><i>learner-centered</b></i> educator?</h6>
                         <p >Do you want
@@ -29,31 +29,52 @@
                             
                             Enter your information to get started
                         </p>
-                    </div>
+                    </div> -->
                     <br>
                         {{ form.hidden_tag() }}
                         <div class="row formSpacing" >
-
-                        <div class="form-group col-md-6" style="width: 100%;">
-                            {{ form.firstname(class="space", placeholder="Enter your first name")}}
-                        </div>
-                        <div class="form-group col-md-6" style="width: 100%;">
-                            {{ form.lastname(class="space", placeholder="Enter your last name")}}
-                        </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.residence(class="space", placeholder= form.residence.label.text)}}
+                            </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.region(class="space", placeholder=form.region.label.text)}}
+                            </div>
                         </div>
                         <div class="row formSpacing">
-                        <div class="form-group col-md-6" style="width: 100%;">
-                            {{ form.phone(class="space", placeholder="Enter your phone number")}}
-                        </div>
-                        <div class="form-group col-md-6" style="width: 100%;">
-                            {{ form.email(class="space", placeholder="Enter your email address")}}
-                        </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.gender(class="space", placeholder=form.gender.label.text)}}
+                            </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.age(class="space", placeholder=form.age.label.text)}}
+                            </div>
                     </div>
-                    <div class="form-group formSpacing" style="width: 100%;">
-                        <small class="text-muted" style="font-size: 16px;">It is useful to have a particular course in mind (one that you teach) while you answer the assessment questions. </small>
-                        <small class="text-muted" style="font-size: 16px; text-align: left;">Fill in the course name below.</small>
-                        {{ form.course(class="space", placeholder="Course/lesson name")}}
+                        <div class="row formSpacing">
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.nationality(class="space", placeholder=form.nationality.label.text)}}
+                            </div>
+
                     </div>
+                        <div class="row formSpacing">
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.market.label}}
+                            </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.market(class="space", placeholder=form.market.label.text)}}
+                            </div>
+                    </div>
+                    <div class="row formSpacing">
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{form.recommendation.label }}
+                            </div>
+                            <div class="form-group col-md-6" style="width: 100%;">
+                                {{ form.recommendation(class="space", placeholder=form.recommendation.label.text)}}
+                            </div>
+                    </div>
+                    <!-- <div class="form-group formSpacing" style="width: 100%;">
+                        <small class="text-muted" style="font-size: 16px;">It is useful to have a particular market in mind (one that you teach) while you answer the assessment questions. </small>
+                        <small class="text-muted" style="font-size: 16px; text-align: left;">Fill in the market name below.</small>
+                        {{ form.market(class="space", placeholder="market/lesson name")}}
+                    </div> -->
                         <div class="flexrow" id="formsubmit">
                             <a href="#">
                                 <h6 class="text-mutes">Help</h6>

@@ -3,12 +3,14 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
 
 class RegistrationForm(FlaskForm):
-    firstname = StringField('First Name', validators=[DataRequired()])
-    lastname = StringField('Last Name', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
-    course = StringField('Course', validators=[DataRequired()])
-    submit = SubmitField('Sign Up')
+    residence = StringField('Residence', validators=[DataRequired()])
+    region = StringField('Region of permanent residence', validators=[DataRequired()])
+    gender = StringField('Gender', validators=[DataRequired()])
+    age = StringField('Age', validators=[DataRequired()])
+    nationality = StringField('Nationality')
+    market = SelectField('How did you hear about central university before coming here.', choices=[('Media/Newspaper', 'Media/Newspaper'),('Friend or Relative', 'Friend or Relative'),('The Internet', 'The Internet'),('Outreach Programme', 'Outreach Programme')])
+    recommendation = BooleanField('Would you recommend Central University to a potential applicant')
+    submit = SubmitField('Okay')
 
 class Questions(FlaskForm):
     question = StringField('Phone', validators=[DataRequired()])

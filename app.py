@@ -1,4 +1,5 @@
 from crypt import methods
+from email import message
 import re
 from flask import Flask,redirect,url_for,render_template,request, flash, session, jsonify, json
 from forms import *
@@ -12,7 +13,6 @@ import urllib
 from urllib.parse import urlencode
 import requests
 import webbrowser
-
 import os
 import http.client
 
@@ -20,8 +20,8 @@ import http.client
 app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628b21sb13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-# app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://isbiiqutsfeekn:c2058971f5bb424127a6b01d9ed3419b5599727a6f67d80136187b13465fe69a@ec2-34-200-94-86.compute-1.amazonaws.com:5432/d3ucdicb4224a8'
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///test.db'
+# app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://isbiiqutsfeekn:c2058971f5bb424127a6b01d9ed3419b5599727a6f67d80136187b13465fe69a@ec2-34-200-94-86.compute-1.amazonaws.com:5432/d3ucdicb4224a8'
 
 
 api_v1_cors_config = {
@@ -124,17 +124,6 @@ def findTotal(array):
 def home():
     form = RegistrationForm()
     if form.validate_on_submit():
-        print("Yes")
-        new_user = User(firstname = form.firstname.data, lastname=form.lastname.data, phone=form.phone.data, email = form.email.data )
-        print(new_user)
-        db.session.add(new_user)
-        db.session.commit()
-        session['firstname'] = new_user.firstname
-        session['lastname'] = new_user.lastname
-        session['phone'] = new_user.phone
-        session['email'] = new_user.email
-        session['course'] = form.course.data
-        flash(f'Thank you' + form.firstname.data)
         return redirect(url_for('forms'))
     return render_template('index.html', form=form)
 
@@ -333,16 +322,37 @@ def addquestion():
         return redirect (url_for('admin'))
     return render_template('addaquestion.html', form=form)
 
-def send_sms(api_key,phone,message,sender_id):
-    params = {"key":api_key,"to":phone,"msg":message,"sender_id":sender_id}
+def send_sms(phone,message):
+    params = {"key":'aniXLCfDJ2S0F1joBHuM0FcmH',"to":phone,"msg":message,"sender_id":'PrestoSL'}
     url = 'https://apps.mnotify.net/smsapi?'+ urllib.parse.urlencode(params)
     content = urllib.request.urlopen(url).read()
     print (content)
     print (url)
 
-@app.route('/newreport')
+@app.route('/newreport', methods=['GET','POST'])
 def newreport():
+    code = "ajlsbdf312wiubc"
+    message = 'Your clearance code is: ' + code
+    # send_sms('0545977791', message) 
     return render_template('newreport.html')
+
+
+@app.route('/forex')
+def forex():
+    url = "https://api.apilayer.com/currency_data/convert?to=GBP&from=USD&amount=5"
+
+    payload = {}
+    headers= {
+    "apikey": "KggjPZDWQHGB8eHxmWefEkeH1JiKUogx"
+    }
+
+    response = requests.request("GET", url, headers=headers, data = payload)
+
+    status_code = response.status_code
+    result = response.text
+    print(result)
+    return result
+
 
 @app.route('/report', methods=['GET','POST'])
 def report():

@@ -1,152 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
 <br/>
 
 <div class="container">
     <div class="row startCard">
-        <div class="col-md-6">
-            <h6>OVERALL LECTURESOFT 21ST CENTURY TEACHING SCORE</h6>    
-            <h1 style="font-size: 100px; font-weight: 700;">{{percentage}}%</h1>
-        </div>
-        <div class="col-md-6">
-            <h4>Overall, your 21st century teaching skills are Acceptable</h4>
-            <br/>
-            <a href="https://thenefertitiproject.com/contact-2/">
-                <button class="button">
-                    Order A Full Report
-                </button>
-            </a>
-        </div>
+        <!-- <div class="col-md-6"> -->
+            <h6>THANK YOU FOR FILLING OUT THE FORM</h6>
+            <h4>Your form has been recieved, we appreciate your honest feedback. We will get back to you with a code that will be used for your clearance, thank you for your cooperation.</h4>
+        <!-- </div> -->
 
+</div>
 </div>
 
 
     <section>
-        <br/>
-        <h4>Your Score Breakdown</h4>
-        <br/>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="percentageEllipse">
-                    <h4>{{learnerCentricityTotal}}</h4>
-                </div>
-                <h6 class="caption">Learner Centricity</h6>
+        <div class="row"> 
+            <div class="container">
+                <!-- <div  onclick="clickToCopy()">
+                    <h6>Please enter your phone number. You would recieve and sms with the code used to clear you.</h6>
+                    <input type="text" value="asdfasdf" class="space" id="myInput">
+                    <button class="button" style="margin-top:20px" type="submit">Request Code</button>
+                </div> -->
 
-            </div>
-            <div class="col-md-4">
-                <div class="percentageEllipse">
-                    <h4>{{teachingForRecallTotal}}</h4>
+                <h6 id="copySuccess" style="color: green; display: none;">Your code has been copied!</h6>
+                <div style="margin:auto ;" onclick="clickToCopy()">
+                    <input type="text" value="alkd32i4ed" class="space" id="myInput">
+                    <button class="button" style="margin-top: 20px;" onclick="clickToCopy()">Copy To Copy</button>
                 </div>
-                <h6 class="caption">Teaching for recall</h6>
-                
-            </div>
-            <div class="col-md-4">
-                <div class="percentageEllipse">
-                    <h4>{{teachingForEngagementTotal}}</h4>
-                </div>
-                <h6 class="caption">Student engagement</h6>
             </div>
         </div>
-    </section>
 
-    <section>
-        <h4>Your Professional Development Summary</h4>
-        <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="guideCard">
-                    <div class="guidebar" style="background-color: #E7FCBB;"></div>
-                    <div class="guidetext">
-                        <h5>STRENGTHS</h5>
-                        <h6>{{strengths}}</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="guideCard">
-                    <div class="guidebar" style="background-color: #FFEFB6;"></div>
-                    <div class="guidetext">
-                        <h5>POTENTIAL</h5>
-                        <h6>{{muchwork}},</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="guideCard">
-                    <div class="guidebar" style="background-color: #EEB6B6;"></div>
-                    <div class="guidetext">
-                        <h5>LOW POTENTIAL</h5>
-                        <h6>{{attention}}</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="guideCard">
-                    <div class="guidebar" style="background-color: #F9FFAF;"></div>
-                    <div class="guidetext">
-                        <h5>WEAKNESS</h5>
-                        <h6>{{fair}}</h6>
-                    </div>
-                </div>
-            </div>
-
-           
-        </div>
-    </section>
-
-    <h6>Want to know more?</h6>
-    <div style="text-align: center; margin-bottom: 10vh; ">
-        <a href="https://thenefertitiproject.com/contact-2/">
-            <button class="button">
-                Order Your Full Report Now
-            </button>
-        </a>
-    </div>
-
-    <section class="recommendation">
-        <h4>Recommended Learning</h4>
-        <p>
-        <h6>
-            <b>
-                The following courses are recommended: 
-            </b>
-        </h6>
-        <br>
-
-    <a href="#">
-        <h6 style="color: teal; text-decoration: underline ;">21st Century Teaching and Learning Essentials:</h6>
-    </a>
-    <h6>Come away with eight simplified strategies for engaged and effective training delivery and an overview of 21st century teaching and learning.</h6>
-    <br/>
-    <a href="#">
-        <h6 style="color: teal; text-decoration: underline ;">Teach, don’t tell: </h6>
-    </a>
-<h6>
-    Master the five no-fluff techniques for achieving maximum learning and recall
-</h6>
-
-<br/>
-
-<h6 class="text-muted">
-
-    Don’t want to pay for a full course? 
-    <br/>
-    <br/>
-    <a href="https://thenefertitiproject.com/contact-2/">
-
-        Purchase a customized set of learning strategies based on your assessment details.
-    </a>
-</h6>
-        </p>
     </section>
 
     <br/>
-   
+<!--    
 <section>
     
     <h6 class="smallheader" style="color: teal;" >THE NEFERTITI PROJECT</h6>
@@ -188,7 +76,31 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 </div>
+
+
+<script>
+function clickToCopy() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+  console.log(copyText)
+
+  /* Select the text field */
+  copyText.select(); 
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+
+
+   /* Copy the text inside the text field */
+  navigator.clipboard.writeText(copyText.value);
+
+
+  
+  /* Alert the copied text */
+    document.getElementById('copySuccess').style.display = "block"
+  //   alert("Copied the text: " + copyText.value);
+}
+</script>
 
 {% endblock %}
